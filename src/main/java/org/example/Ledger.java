@@ -165,9 +165,9 @@ public class Ledger {
                 searchbyVendor();
                 break;
 
-            //ase "6":
-            // BacktoReport();
-            // break;
+            case "6":
+                backtoReport();
+                break;
 
         }
     }
@@ -248,4 +248,44 @@ public class Ledger {
             }
         }
     }
-}
+
+    private static void backtoReport() {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Welcome to your Reports ledger ");
+            System.out.println(("Reports Menu: "));
+            System.out.println("[1] - Month to Date");
+            System.out.println("[2] - Previous months");
+            System.out.println("[3] - Year to Date");
+            System.out.println("[4] - Previous Year");
+            System.out.println("[5] - Search by Vendor");
+            System.out.println("[6] - Go back to Report page");
+            //using switch method instead of if/else statement to run the corresponding method based on user's input
+            String input = scanner.nextLine();
+            switch (input.toUpperCase()) {
+                case "1":
+                    monthtoDate();
+                    break;
+
+                case "2":
+                    previousMonths();
+                    break;
+
+                case "3":
+                    yeartoDate();
+                    break;
+
+                case "4":
+                    previousYears();
+                    break;
+
+                case "5":
+                    searchbyVendor();
+                    break;
+
+                case "6":
+                    backtoReport();
+                    break;
+
+            }
+        }
+        }
