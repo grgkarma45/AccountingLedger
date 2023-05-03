@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -152,17 +153,17 @@ public class Ledger {
                 previousMonths();
                 break;
 
-            //case "3":
-            // YeartoDate();
-            // break;
+            case "3":
+                yeartoDate();
+                break;
 
-            //case "4":
-            //PreviousYear();
-            // break;
+            case "4":
+                previousYears();
+                break;
 
-            //case "5":
-            //SearchbyVendor();
-            // break;
+            case "5":
+                searchbyVendor();
+                break;
 
             //ase "6":
             // BacktoReport();
@@ -171,33 +172,79 @@ public class Ledger {
         }
     }
 
-private static void monthtoDate() { // prints the 1st of the current month to the current date(today)
-    System.out.println("Here is your month to date report: ");
-    LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
-    LocalDate startOfTheCurrentMonth = currentDate.withDayOfMonth(1); // this method gets the first day of the month
-    //using the 'withDayOfMonth(1) method
-   // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy"); // using the DateTimeFormatter
-    //class to format the dates in month to date format
-    System.out.println("From" + " " + startOfTheCurrentMonth + " to " + currentDate);
+    private static void monthtoDate() { // prints the 1st of the current month to the current date(today)
+        System.out.println("Here is your month to date report: ");
+        LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
+        LocalDate startOfTheCurrentMonth = currentDate.withDayOfMonth(1); // this method gets the first day of the month
+        //using the 'withDayOfMonth(1) method
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy"); // using the DateTimeFormatter
+        //class to format the dates in month to date format
+        System.out.println("From" + " " + startOfTheCurrentMonth.format(formatter) + " to " + currentDate.format(formatter));
 
-    for (Transaction item : transactionsList) {
-        //if we don't subtract 1 , the first day of the month will be excluded since we are using 'isAfter' method
-        if (item.getDate().isAfter(startOfTheCurrentMonth.minusDays(1)) || item.getDate().isEqual(currentDate)) {
-            System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                    item.getVendor() + " | " + item.getAmount());
+        for (Transaction item : transactionsList) {
+            //if we don't subtract 1 , the first day of the month will be excluded since we are using 'isAfter' method
+            if (item.getDate().isAfter(startOfTheCurrentMonth.minusDays(1)) || item.getDate().isEqual(currentDate)) {
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
+            }
         }
     }
-}
+
     private static void previousMonths() {
         LocalDate today = LocalDate.now();
         int previousMonthsValue = today.minusMonths(1).getMonthValue();
         System.out.println("Previous months");
-        for (Transaction transaction : transactionsList) {
-            LocalDate transactionDate = transaction.getDate();
+        for (Transaction item : transactionsList) {
+            LocalDate transactionDate = item.getDate();
             if (transactionDate.getMonthValue() == previousMonthsValue && transactionDate.getYear() == today.getYear()) {
-                System.out.println(transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" +
-                        transaction.getAmount() + "|" + transaction.getDate());
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
+            }
+        }
+    }
 
+    private static void yeartoDate() { // prints the 1st of the current month to the current date(today)
+        System.out.println("Here is your year to date report: ");
+        LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
+        LocalDate startOfTheCurrentYear = currentDate.withDayOfYear(1); // this method gets the first day of the month
+        //using the 'withDayOfMonth(1) method
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy"); // using the DateTimeFormatter
+        //class to format the dates in month to date format
+        System.out.println("From" + " " + startOfTheCurrentYear.format(formatter) + " to " + currentDate.format(formatter));
+
+        for (Transaction transaction : transactionsList) {
+            //if we don't subtract 1 , the first day of the month will be excluded since we are using 'isAfter' method
+            if (transaction.getDate().isAfter(startOfTheCurrentYear.minusDays(1)) || transaction.getDate().isEqual(currentDate)) {
+                System.out.println(transaction.getDate() + " | " + transaction.getTime() + " | " + transaction.getDescription() + " | " +
+                        transaction.getVendor() + " | " + transaction.getAmount());
+            }
+        }
+    }
+
+
+    private static void previousYears() {
+        LocalDate today = LocalDate.now();
+        int previousYearValue = today.minusYears(1).getYear(); // changed to get previous year
+        System.out.println("Previous Year");
+        for (Transaction item : transactionsList) {
+            LocalDate transactionDate = item.getDate();
+            if (transactionDate.getYear() == previousYearValue && transactionDate.getYear() != today.getYear()) {
+                // changed condition to check if transaction is in previous year
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
+            }
+        }
+    }
+
+    private static void searchbyVendor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" Please enter Vendor's name: ");
+        String vendorName = scanner.nextLine();
+
+        for (Transaction item : transactionsList) {
+            if (item.getVendor().equalsIgnoreCase(vendorName)) {
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
             }
         }
     }
