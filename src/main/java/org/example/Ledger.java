@@ -88,7 +88,7 @@ public class Ledger {
                 showReports();
                 break;
             case "H":
-                System.exit(0);
+                Main.homescreen();
                 break;
             default:
                 System.out.println("Please enter a valid option");
