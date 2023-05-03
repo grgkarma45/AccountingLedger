@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -146,101 +145,60 @@ public class Ledger {
         String input = scanner.nextLine();
         switch (input.toUpperCase()) {
             case "1":
-                MonthtoDate();
+                monthtoDate();
                 break;
 
             case "2":
-                PreviousMonths();
+                previousMonths();
                 break;
 
-            case "3":
-                YeartoDate();
-                break;
+            //case "3":
+            // YeartoDate();
+            // break;
 
-            case "4":
-                PreviousYear();
-                break;
+            //case "4":
+            //PreviousYear();
+            // break;
 
-            case "5":
-                SearchbyVendor();
-                break;
+            //case "5":
+            //SearchbyVendor();
+            // break;
 
-            case "6":
-                BacktoReport();
-                break;
+            //ase "6":
+            // BacktoReport();
+            // break;
 
         }
     }
 
-    private static void MonthtoDate() {
-        System.out.println("Month to Date");
+private static void monthtoDate() { // prints the 1st of the current month to the current date(today)
+    System.out.println("Here is your month to date report: ");
+    LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
+    LocalDate startOfTheCurrentMonth = currentDate.withDayOfMonth(1); // this method gets the first day of the month
+    //using the 'withDayOfMonth(1) method
+   // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy"); // using the DateTimeFormatter
+    //class to format the dates in month to date format
+    System.out.println("From" + " " + startOfTheCurrentMonth + " to " + currentDate);
 
-//        private void displayMonthToDate() {
-//            public class MonthToDate {
-//                    LocalDate currentDate = LocalDate.now();
-//                    LocalDate monthStartDate = currentDate.withDayOfMonth(1);
-//                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//                ..System.out.println("Month to Date: " + monthStartDate.format(formatter) + " - " + currentDate.format(formatter));
-//                }
-//            }
-//        }
-//        }
-    private static void PreviousMonths() {
-
-        }
-        System.out.println("Previous Months");
-        for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
-            if (item.getAmount() < 0) {
-                //printing out it's private variables using the getter methods
-                System.out.println(item.getDate());
-            }
+    for (Transaction item : transactionsList) {
+        //if we don't subtract 1 , the first day of the month will be excluded since we are using 'isAfter' method
+        if (item.getDate().isAfter(startOfTheCurrentMonth.minusDays(1)) || item.getDate().isEqual(currentDate)) {
+            System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                    item.getVendor() + " | " + item.getAmount());
         }
     }
+}
+    private static void previousMonths() {
+        LocalDate today = LocalDate.now();
+        int previousMonthsValue = today.minusMonths(1).getMonthValue();
+        System.out.println("Previous months");
+        for (Transaction transaction : transactionsList) {
+            LocalDate transactionDate = transaction.getDate();
+            if (transactionDate.getMonthValue() == previousMonthsValue && transactionDate.getYear() == today.getYear()) {
+                System.out.println(transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" +
+                        transaction.getAmount() + "|" + transaction.getDate());
 
-    private static void YeartoDate() {
-        System.out.println("Year to Date");
-        for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
-            if (item.getAmount() < 0) {
-                //printing out it's private variables using the getter methods
-                System.out.println(item.getDate());
-            }
-        }
-    }
-
-    private static void PreviousYear() {
-        System.out.println("Previous Year");
-        for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
-            if (item.getAmount() < 0) {
-                //printing out it's private variables using the getter methods
-                System.out.println(item.getDate());
-            }
-        }
-    }
-
-    private static void SearchbyVendor() {
-        System.out.println("Search by Vendor");
-        for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
-            if (item.getAmount() < 0) {
-                //printing out it's private variables using the getter methods
-                System.out.println(item.getDate());
-            }
-        }
-    }
-
-    private static void BacktoReport() {
-        System.out.println("Back to Report");
-        for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
-            if (item.getAmount() < 0) {
-                //printing out it's private variables using the getter methods
-                System.out.println(item.getDate());
             }
         }
     }
 }
-
-
