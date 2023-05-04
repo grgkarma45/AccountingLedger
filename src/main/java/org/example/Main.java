@@ -11,7 +11,10 @@ public class Main {
     }
 
     public static void homescreen() {
+
         Scanner scanner = new Scanner(System.in);
+        String input = null;
+        do{
         //Display Homescreen
         System.out.println("Welcome to your accounting Ledger: ");
         System.out.println(("Main Menu"));
@@ -20,7 +23,7 @@ public class Main {
         System.out.println("[L] - Ledger");
         System.out.println("[X] - Exit");
       // use switch method for the options in the Homescreen
-        String input = scanner.nextLine();
+        input = scanner.nextLine();
         switch (input.toUpperCase()){
             case "D":
                 addDeposit();
@@ -32,12 +35,13 @@ public class Main {
                 showLedger();
                 break;
             case "X":
-                System.exit(0);
                 break;
             default:
-                System.out.println("Please enter a valid option");
+                System.out.println("Please enter a valid option and try again");
                 break;
-        }
+
+        }}while(!input.equalsIgnoreCase("x"));
+        System.out.println("Have a Nice Day");
 
 
     }
