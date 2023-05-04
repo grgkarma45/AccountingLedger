@@ -35,13 +35,15 @@ public class Main {
                 showLedger();
                 break;
             case "X":
+                System.out.println("Have a Good Day");
+                System.exit(0);
                 break;
             default:
                 System.out.println("Please enter a valid option and try again");
                 break;
 
         }}while(!input.equalsIgnoreCase("x"));
-        System.out.println("Have a Nice Day");
+        //System.out.println("Have a Nice Day");
 
 
     }

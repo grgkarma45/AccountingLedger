@@ -65,34 +65,36 @@ public class Ledger {
 
     public static void showLedger() { // creating a method called showLedger() to display the ledger menu
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to your ledger ");
-        System.out.println(("Main Menu: "));
-        System.out.println("[A] - Display all entries");
-        System.out.println("[D] - Display only the entries that are deposited into the account");
-        System.out.println("[p] - Display only the negative entries(payments)");
-        System.out.println("[R] - Reports");
-        System.out.println("[H] - Go back to Home page");
-        //using switch method instead of if/else statement to run the corresponding method based on user's input
-        String input = scanner.nextLine();
-        switch (input.toUpperCase()) {
-            case "A":
-                allEntries();
-                break;
-            case "D":
-                showDepositedEntries();
-                break;
-            case "P":
-                showPaymentEntries();
-                break;
-            case "R":
-                showReports();
-                break;
-            case "H":
-                Main.homescreen(); // Looping back to homescreen which is in Main.java
-                break;
-            default:
-                System.out.println("Please enter a valid option");
-                break;
+        while (true) {
+            System.out.println("Welcome to your ledger ");
+            System.out.println(("Main Menu: "));
+            System.out.println("[A] - Display all entries");
+            System.out.println("[D] - Display only the entries that are deposited into the account");
+            System.out.println("[p] - Display only the negative entries(payments)");
+            System.out.println("[R] - Reports");
+            System.out.println("[H] - Go back to Home page");
+            //using switch method instead of if/else statement to run the corresponding method based on user's input
+            String input = scanner.nextLine();
+            switch (input.toUpperCase()) {
+                case "A":
+                    allEntries();
+                    break;
+                case "D":
+                    showDepositedEntries();
+                    break;
+                case "P":
+                    showPaymentEntries();
+                    break;
+                case "R":
+                    showReports();
+                    break;
+                case "H":
+                    return; // Looping back to homescreen which is in Main.java
+
+                default:
+                    System.out.println("Please enter a valid option");
+                    break;
+            }
         }
     }
 
@@ -124,50 +126,56 @@ public class Ledger {
 
     private static void allEntries() { // Declaring the allentries() method
         System.out.println(" All Entries");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and printing out it's private variables using the getter methods
-            System.out.println(item.getDate() + " " + item.getTime() + " " + item.getDescription() + " " +
-                    item.getVendor() + " " + item.getAmount());
+            System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
+                    item.getVendor() + "|" + item.getAmount());
         }
     }
 
     //show reports
     public static void showReports() { // creating a method called showReports() to display the reprots menu
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to your Reports ledger ");
-        System.out.println(("Reports Menu: "));
-        System.out.println("[1] - Month to Date");
-        System.out.println("[2] - Previous months");
-        System.out.println("[3] - Year to Date");
-        System.out.println("[4] - Previous Year");
-        System.out.println("[5] - Search by Vendor");
-        System.out.println("[6] - Go back to Report page");
-        //using switch method instead of if/else statement to run the corresponding method based on user's input
-        String input = scanner.nextLine();
-        switch (input.toUpperCase()) {
-            case "1":
-                monthtoDate();
-                break;
+        while (true) {
+            System.out.println("Welcome to your Reports ledger ");
+            System.out.println(("Reports Menu: "));
+            System.out.println("[1] - Month to Date");
+            System.out.println("[2] - Previous months");
+            System.out.println("[3] - Year to Date");
+            System.out.println("[4] - Previous Year");
+            System.out.println("[5] - Search by Vendor");
+            System.out.println("[6] - Go back to Main Menu");
+            //using switch method instead of if/else statement to run the corresponding method based on user's input
+            String input = scanner.nextLine();
+            switch (input.toUpperCase()) {
+                case "1":
+                    monthtoDate();
+                    break;
 
-            case "2":
-                previousMonths();
-                break;
+                case "2":
+                    previousMonths();
+                    break;
 
-            case "3":
-                yeartoDate();
-                break;
+                case "3":
+                    yeartoDate();
+                    break;
 
-            case "4":
-                previousYears();
-                break;
+                case "4":
+                    previousYears();
+                    break;
 
-            case "5":
-                searchbyVendor();
-                break;
+                case "5":
+                    searchbyVendor();
+                    break;
 
-            case "6":
-                backtoReport();
-                break;
+                case "6":
+                    return;
+
+                default:
+                    System.out.println("Please enter a valid option");
+                    break;
+            }
 
         }
     }
@@ -249,7 +257,7 @@ public class Ledger {
         }
     }
 
-    private static void backtoReport() {
-        showReports(); //backtoReport takes us
-        }
-        }
+    private static void goBack() {
+        showLedger(); //backtoReport takes us
+    }
+}
