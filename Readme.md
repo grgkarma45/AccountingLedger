@@ -4,6 +4,13 @@ This is a simple command-line program for managing financial transactions.
 The program allows users to make deposits, payments, and view a ledger of
 all transactions. All transactions are stored in a CSV file named transactions.csv.
 
+### How to start the application:
+
+* Clone the repository and navigate to the src directory.
+
+* Run the compiled file using the application like intellij.
+
+
 ## What does the program do:
 
     The program displays a Home Screen which has the following
@@ -40,7 +47,7 @@ The user's choice is read using a Scanner object and a switch statement is used 
 
 5) To exit the program, select the X option.
 
-## [How transactions are stored]()
+## How transactions are stored
 
 
 The transactions.csv file stores all transactions in the following format:
@@ -58,6 +65,7 @@ amount - The amount of the transaction. For payments, the amount is negative
 ##
 
 ### Some Screenshots of the application
+
 
 ![Main Menu.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FMain%20Menu.png)
 

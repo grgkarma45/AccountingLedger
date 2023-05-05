@@ -65,7 +65,7 @@ public class Ledger {
 
     public static void showLedger() { // creating a method called showLedger() to display the ledger menu
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        while (true) { // used while loop so it does not create infinate copy
             //System.out.println("Welcome to your ledger ");
             System.out.println(("Ledger Menu: "));
             System.out.println("[A] - Display all entries");
@@ -106,8 +106,8 @@ public class Ledger {
             // array list and check if the price is negative (payment)
             if (item.getAmount() < 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
-                        item.getVendor() + "|" + item.getAmount());
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
             }
         }
     }
@@ -119,8 +119,8 @@ public class Ledger {
             // array list and check if the amount is positive(Deposits)
             if (item.getAmount() > 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
-                        item.getVendor() + "|" + item.getAmount());
+                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        item.getVendor() + " | " + item.getAmount());
             }
         }
 
@@ -128,11 +128,11 @@ public class Ledger {
 
     private static void allEntries() { // Declaring the allentries() method
         System.out.println("Showing All Entries");
-        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
+        System.out.println("Date       |" + "Time   |" + "Description         |" + "Vendor        |" + "Amount");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and printing out it's private variables using the getter methods
-            System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
-                    item.getVendor() + "|" + item.getAmount());
+            System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + "| " +
+                    item.getVendor() + " | " + item.getAmount());
         }
     }
 
