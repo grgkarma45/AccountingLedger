@@ -56,6 +56,7 @@ public class Main {
         System.out.println("Enter amount");
         double amount = scanner.nextDouble();//Storing  the amount as the Double.
         scanner.nextLine();
+
         try{ // using the filewriter to add the collected data into the csv file
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
             // store all the information with a -ve sign before the amount variable.

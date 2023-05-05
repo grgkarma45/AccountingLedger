@@ -1,5 +1,4 @@
 package org.example;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,10 +9,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
+
 public class Ledger {
     // initializing an arraylist which holds transaction objects and calling it transactionList
     // and we are inheriting the transactions array list from the getTransactions()
     public static ArrayList<Transaction> transactionsList = getTransactions();
+
     public static ArrayList<Transaction> getTransactions() { //Declaring a method called getTransactions
         //of the type arraylist that holds Transaction objects
         ArrayList<Transaction> transactions = new ArrayList<>();//making an arraylist of transcation objects named transactions
@@ -67,6 +68,7 @@ public class Ledger {
         return transactions;// we're returning the transactions array list to our method, so that when we call on out
         //method, we get an array list returned to us.
     }
+
     public static void showLedger() { // creating a method called showLedger() to display the ledger menu
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -85,12 +87,13 @@ public class Ledger {
                 case "P" -> showPaymentEntries();
                 case "R" -> showReports();
                 case "H" -> {
-                    return; // Looping back to homescreen which is in Main.java
+                    return; // Returning back to homescreen which is in Main.java
                 }
                 default -> System.out.println("Please enter a valid option");
             }
         }
     }
+
     public static void showReports() { // creating a method called showReports() to display the reprots menu
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -124,27 +127,28 @@ public class Ledger {
         System.out.println(" Please enter Vendor's name: ");
         String vendorName = scanner.nextLine();
         System.out.println("Here are all your transaction from" + " " + vendorName);
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");;
 
-        for(Transaction item : transactionsList){
-            if(item.getVendor().equalsIgnoreCase(vendorName)){
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+        for (Transaction item : transactionsList) {
+            if (item.getVendor().equalsIgnoreCase(vendorName)) {
+               // System.out.println("Date        " + "Time            " +"Description             " + "  Vendor             " + "       Amount         ");
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
+                //System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
+                        //item.getVendor() + " | " + item.getAmount());
             }
-
         }
-
-
     }
+
     private static void previousYears() {
         System.out.println(" Here is your report for the previous year: ");
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
         LocalDate currentDate = LocalDate.now();
         int previousYear = currentDate.minusYears(1).getYear();
 
-        for (Transaction item : transactionsList){
+        for (Transaction item : transactionsList) {
             LocalDate transactionDate = item.getDate();
-            if (transactionDate.getYear()==previousYear) {
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+            if (transactionDate.getYear() == previousYear) {
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
             }
         }
     }
@@ -155,28 +159,27 @@ public class Ledger {
         LocalDate startOfTheYear = currentDate.withDayOfYear(1); // gets the first date of the year ,using withDayOfYear method
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy, MMM dd");
-        System.out.println("From" + " " + startOfTheYear.format(formatter) + " " + "to" + " " + currentDate.format(formatter) );
+        System.out.println("From" + " " + startOfTheYear.format(formatter) + " " + "to" + " " + currentDate.format(formatter));
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
 
-        for (Transaction item : transactionsList){
-            if (item.getDate().isAfter(startOfTheYear.minusDays(1)) || item.getDate().isEqual(currentDate))
-            {
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+        for (Transaction item : transactionsList) {
+            if (item.getDate().isAfter(startOfTheYear.minusDays(1)) || item.getDate().isEqual(currentDate)) {
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
             }
-
         }
     }
 
     private static void previousMonths() {//prints the transactions from the previous month
         System.out.println(" Here is your report for the previous month: ");
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
         LocalDate currentDate = LocalDate.now();
         int previousMonth = currentDate.minusMonths(1).getMonthValue();
 
-        for (Transaction item : transactionsList){
+        for (Transaction item : transactionsList) {
             LocalDate transactionDate = item.getDate();
-            if (transactionDate.getMonthValue()==previousMonth && transactionDate.getYear() == currentDate.getYear()) {
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+            if (transactionDate.getMonthValue() == previousMonth && transactionDate.getYear() == currentDate.getYear()) {
+
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
             }
         }
     }
@@ -189,60 +192,53 @@ public class Ledger {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy"); // using the DateTimeFormatter
         //class to format the dates in month to date format
         System.out.println("From" + " " + startOfTheCurrentMonth.format(formatter) + " to " + currentDate.format(formatter));
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
 
-        for (Transaction item :transactionsList) {
+        for (Transaction item : transactionsList) {
             //if we don't subtract 1 , the first day of the month will be excluded since we are using 'isAfter' method
-            if (item.getDate().isAfter(startOfTheCurrentMonth.minusDays(1)) || item.getDate().isEqual(currentDate)){
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+            if (item.getDate().isAfter(startOfTheCurrentMonth.minusDays(1)) || item.getDate().isEqual(currentDate)) {
+               // System.out.println("Date        " + "Time            " +"Description             " + "  Vendor             " + "       Amount         ");
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
+
             }
-
-
         }
-
-
     }
 
     private static void showPaymentEntries() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Payments");
+        System.out.println(" Deposits");
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
-            // array list and check if the price is negative (payment)
+            // array list and check if the amount is positive(Deposits)
 
-            if(item.getAmount() < 0){
+            if (item.getAmount() < 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " +  item.getAmount());
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
+
             }
         }
-
-
     }
-
 
 
     private static void showDepositedEntries() {
         System.out.println(" Deposits");
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and check if the amount is positive(Deposits)
 
-            if(item.getAmount() > 0) {
+            if (item.getAmount() > 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + "| " + item.getTime() + " | " + item.getDescription() + " | " +
-                        item.getVendor() + " | " + item.getAmount());
+                System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
+
             }
         }
-
-
-
     }
 
     private static void allEntries() { // Declaring the allentries() method
         System.out.println(" All Entries");
+        System.out.println("Date        " + "  Time          " +"Description                                      " + "  Vendor             " + "       Amount         ");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and printing out it's private variables using the getter methods
-            System.out.println(item.getDate() + "| " + item.getTime() + "| " + item.getDescription() + " |" +
-                    item.getVendor() + "| " +  item.getAmount());
+            System.out.printf("%-13s %-13s %-50s %-25s %-30.2f\n", item.getDate(), item.getTime(), item.getDescription(), item.getVendor(), item.getAmount());
         }
     }
 }
