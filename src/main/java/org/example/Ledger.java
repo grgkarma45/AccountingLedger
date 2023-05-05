@@ -80,23 +80,14 @@ public class Ledger {
             //using switch method instead of if/else statement to run the corresponding method based on user's input
             String input = scanner.nextLine();
             switch (input.toUpperCase()) {
-                case "A":
-                    allEntries();
-                    break;
-                case "D":
-                    showDepositedEntries();
-                    break;
-                case "P":
-                    showPaymentEntries();
-                    break;
-                case "R":
-                    showReports();
-                    break;
-                case "H":
+                case "A" -> allEntries();
+                case "D" -> showDepositedEntries();
+                case "P" -> showPaymentEntries();
+                case "R" -> showReports();
+                case "H" -> {
                     return; // Looping back to homescreen which is in Main.java
-                default:
-                    System.out.println("Please enter a valid option");
-                    break;
+                }
+                default -> System.out.println("Please enter a valid option");
             }
         }
     }
@@ -114,26 +105,15 @@ public class Ledger {
             //using switch method instead of if/else statement to run the corresponding method based on user's input
             String input = scanner.nextLine();
             switch (input.toUpperCase()) {
-                case "1":
-                    monthtoDate();
-                    break;
-                case "2":
-                    previousMonths();
-                    break;
-                case "3":
-                    yeartoDate();
-                    break;
-                case "4":
-                    previousYears();
-                    break;
-                case "5":
-                    searchbyVendor();
-                    break;
-                case "6":
+                case "1" -> monthtoDate();
+                case "2" -> previousMonths();
+                case "3" -> yeartoDate();
+                case "4" -> previousYears();
+                case "5" -> searchbyVendor();
+                case "6" -> {
                     return;
-                default:
-                    System.out.println("Please enter a valid option");
-                    break;
+                }
+                default -> System.out.println("Please enter a valid option");
             }
         }
     }

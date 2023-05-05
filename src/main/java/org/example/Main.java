@@ -22,23 +22,14 @@ public class Main {
             System.out.println("[X] - Exit");
             // use switch method for the options in the Homescreen
             input = scanner.nextLine();
-            switch (input.toUpperCase()){
-                case "D":
-                    addDeposit();
-                    break;
-                case "P":
-                    makePayment();
-                    break;
-                case "L":
-                    showLedger();
-                    break;
-                case "X":
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Please enter a valid option");
-                    break;
-            }} while(!input.equalsIgnoreCase("X"));
+            switch (input.toUpperCase()) {
+                case "D" -> addDeposit();
+                case "P" -> makePayment();
+                case "L" -> showLedger();
+                case "X" -> System.exit(0);
+                default -> System.out.println("Please enter a valid option");
+            }
+        } while(!input.equalsIgnoreCase("X"));
         System.out.println("Have a nice day");
 
 
