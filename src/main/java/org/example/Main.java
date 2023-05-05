@@ -67,13 +67,13 @@ public class Main {
         System.out.println("Enter amount");
         double amount = scanner.nextDouble();//Storing  the amount as the Double.
 
-        try{ // using the filewriter to add the collected data into the csv file
+        try{ // writing the information from the variables to the csv.file
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
-            // store all the information with a -ve sign before the amount variable.
-            fileWriter.write( "\n" + date + "|" + time + "|" + description  + "|" + vendor + "|" + "-"  + amount + "|");
-            System.out.println("Payment made successfully");
+            //add | in between the variables
+            fileWriter.write( "\n" + date + "|" + time + "|" +description +"|"+ vendor + "|" + amount);
+            System.out.println("Deposit added successfully");
             fileWriter.close();
-        } catch (IOException e){ //prints out an error message when the input is wrong
+        } catch (IOException e){
             System.out.println("Error inputting data!");
         }
     }
