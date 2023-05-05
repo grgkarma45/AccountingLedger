@@ -60,6 +60,9 @@ amount - The amount of the transaction. For payments, the amount is negative
 ### Some Screenshots of the application
 
 ![Main Menu.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FMain%20Menu.png)
+
 ![Ledger Menu.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FLedger%20Menu.png)
+
 ![Reports Menu.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FReports%20Menu.png)
+
 ![All Entries.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FAll%20Entries.png)
