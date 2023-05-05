@@ -73,4 +73,4 @@ amount - The amount of the transaction. For payments, the amount is negative
 
 ![Reports Menu.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FReports%20Menu.png)
 
-![All Entries.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2FAll%20Entries.png)
+![all entries2.png](..%2F..%2FUsers%2FStudent%2FDesktop%2Fscreenshots%2Fall%20entries2.png)
