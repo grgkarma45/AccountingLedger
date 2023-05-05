@@ -16,7 +16,8 @@ public class Main {
         String input = null;
         do{
         //Display Homescreen
-        System.out.println("Welcome to your accounting Ledger: ");
+
+            System.out.println("Welcome to your accounting Ledger: ");
         System.out.println(("Main Menu"));
         System.out.println("[D] - Add Deposit");
         System.out.println("[P] - Make Payment");

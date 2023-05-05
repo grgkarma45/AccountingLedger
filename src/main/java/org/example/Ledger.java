@@ -66,8 +66,8 @@ public class Ledger {
     public static void showLedger() { // creating a method called showLedger() to display the ledger menu
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Welcome to your ledger ");
-            System.out.println(("Main Menu: "));
+            //System.out.println("Welcome to your ledger ");
+            System.out.println(("Ledger Menu: "));
             System.out.println("[A] - Display all entries");
             System.out.println("[D] - Display only the entries that are deposited into the account");
             System.out.println("[p] - Display only the negative entries(payments)");
@@ -100,32 +100,34 @@ public class Ledger {
 
 
     private static void showPaymentEntries() {
-        System.out.println("Payment");
+        System.out.println("Showing Payment entries");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and check if the price is negative (payment)
             if (item.getAmount() < 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + " " + item.getTime() + " " + item.getDescription() + " " +
-                        item.getVendor() + " " + item.getAmount());
+                System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
+                        item.getVendor() + "|" + item.getAmount());
             }
         }
     }
 
     private static void showDepositedEntries() {
-        System.out.println(" Deposit");
+        System.out.println("Showing Deposited Entries");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and check if the amount is positive(Deposits)
             if (item.getAmount() > 0) {
                 //printing out it's private variables using the getter methods
-                System.out.println(item.getDate() + " " + item.getTime() + " " + item.getDescription() + " " +
-                        item.getVendor() + " " + item.getAmount());
+                System.out.println(item.getDate() + "|" + item.getTime() + "|" + item.getDescription() + "|" +
+                        item.getVendor() + "|" + item.getAmount());
             }
         }
 
     }
 
     private static void allEntries() { // Declaring the allentries() method
-        System.out.println(" All Entries");
+        System.out.println("Showing All Entries");
         System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) { // loop through each transaction object(item) in the transactionslist
             // array list and printing out it's private variables using the getter methods
@@ -182,6 +184,7 @@ public class Ledger {
 
     private static void monthtoDate() { // prints the 1st of the current month to the current date(today)
         System.out.println("Here is your month to date report: ");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
         LocalDate startOfTheCurrentMonth = currentDate.withDayOfMonth(1); // this method gets the first day of the month
         //using the 'withDayOfMonth(1) method
@@ -202,6 +205,7 @@ public class Ledger {
         LocalDate today = LocalDate.now();
         int previousMonthsValue = today.minusMonths(1).getMonthValue();
         System.out.println("Previous months");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) {
             LocalDate transactionDate = item.getDate();
             if (transactionDate.getMonthValue() == previousMonthsValue && transactionDate.getYear() == today.getYear()) {
@@ -213,6 +217,7 @@ public class Ledger {
 
     private static void yeartoDate() { // prints the 1st of the current month to the current date(today)
         System.out.println("Here is your year to date report: ");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         LocalDate currentDate = LocalDate.now(); // this method gets the current date using 'LocalDate.now()
         LocalDate startOfTheCurrentYear = currentDate.withDayOfYear(1); // this method gets the first day of the month
         //using the 'withDayOfMonth(1) method
@@ -234,6 +239,7 @@ public class Ledger {
         LocalDate today = LocalDate.now();
         int previousYearValue = today.minusYears(1).getYear(); // changed to get previous year
         System.out.println("Previous Year");
+        System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
         for (Transaction item : transactionsList) {
             LocalDate transactionDate = item.getDate();
             if (transactionDate.getYear() == previousYearValue && transactionDate.getYear() != today.getYear()) {
@@ -251,6 +257,7 @@ public class Ledger {
 
         for (Transaction item : transactionsList) {
             if (item.getVendor().equalsIgnoreCase(vendorName)) {
+                System.out.println("Date      |" + "Time     |" + "Description     |" + "Vendor   |" + "Amount");
                 System.out.println(item.getDate() + " | " + item.getTime() + " | " + item.getDescription() + " | " +
                         item.getVendor() + " | " + item.getAmount());
             }
