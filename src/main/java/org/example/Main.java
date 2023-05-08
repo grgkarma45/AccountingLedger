@@ -1,4 +1,4 @@
-import org.example.Ledger;
+package org.example;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         homescreen();
+
     }
 
     public static void homescreen() {
@@ -53,7 +54,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Date:(yyyy-MM-dd)");
         String date = scanner.nextLine();
-        System.out.println("Enter Time: ( HH:mm:SS");
+        System.out.println("Enter Time: ( HH:mm:SS)");
         String time = scanner.nextLine();
         System.out.println("Enter Description");
         String description = scanner.nextLine();
@@ -61,11 +62,14 @@ public class Main {
         String vendor = scanner.nextLine(); // use nextLine() to read the vendor name
         System.out.println("Enter amount");
         double amount = scanner.nextDouble();
+        DecimalFormat df = new DecimalFormat("#.##"); // format amount with 2 decimal places
+        String formattedAmount = df.format(amount);
+
 
         try {
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
             // use String.format() to format the amount with 2 decimal places
-            fileWriter.write(String.format("\n%s|%s|%s|%s|%.2f", date, time, description, vendor, amount));
+            fileWriter.write("\n" + date + "|" + time + "|" + description + "|" + vendor + "|" + formattedAmount);
             System.out.println("Deposit added successfully");
             fileWriter.close();
         } catch (IOException e) {
@@ -78,7 +82,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Date:(yyyy-MM-dd)");
         String date = scanner.nextLine();
-        System.out.println("Enter Time: ( HH:mm:SS");
+        System.out.println("Enter Time: ( HH:mm:SS)");
         String time = scanner.nextLine();
         System.out.println("Enter Description");
         String description = scanner.nextLine();
